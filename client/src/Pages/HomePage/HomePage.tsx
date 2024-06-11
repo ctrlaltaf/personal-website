@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import Background from "./profile.jpg";
 import "./HomePage.css";
+import React from "react";
+import Background from "./profile.jpg";
+
 const HomePage = () => {
   const [isVisible, setIsVisible] = useState(false);
 
