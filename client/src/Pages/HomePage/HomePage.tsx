@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./HomePage.css";
-import React from "react";
 import Background from "./profile.jpg";
 
 const HomePage = () => {
