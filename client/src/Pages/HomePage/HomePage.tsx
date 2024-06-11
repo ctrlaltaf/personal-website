@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import "./HomePage.css";
 import Background from "./profile.jpg";
+import ScrollToShowContent from "./ScrollToShowContent";
+import Skills from "./Content/Skills";
 
 const HomePage = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     // Function to perform smooth scroll over a custom duration
@@ -53,25 +56,40 @@ const HomePage = () => {
         </div>
         <div>
           <h2>「　Welcome　｜　Selamat Datang　｜　いらっしゃいませ　」</h2>
+          <br />
           <div className={`fade-in ${isVisible ? "active" : ""}`}>
-            <h2>My name is Altaf</h2>
-            <ul>
-              <li>
-                <h3>Avid fullstack developer</h3>
-              </li>
-              <li>
-                <h3>Researching and solving network biology problems</h3>
-              </li>
-              <li>
-                <h3>Outdoor and bouldering enthusiast</h3>
-              </li>
-              <li>
-                <h3>World traveller</h3>
-              </li>
-            </ul>
+            <h1>Altaf Barelvi</h1>
+            <h3>
+              Fullstack Developer ・ Researcher ・ World Traveler ・ Learner
+            </h3>
+            <h4 className="home-intro">
+              Born in Indonesia and living a nomadic lifestyle in Germany, the
+              UK, and the USA, I have always loved building/exploring/learning
+              new things from around the world and the internet. This site aims
+              to showcase how I see the world through
+              projects/interests/experiences
+            </h4>
           </div>
         </div>
       </div>
+
+      <ScrollToShowContent
+        contents={[
+          {
+            triggerPoint: 300,
+            render: () => <Skills />,
+          },
+          {
+            triggerPoint: 600,
+            render: () => (
+              <div>
+                <h2>Header 2</h2>
+                <p>This is a more complex div with some text.</p>
+              </div>
+            ),
+          },
+        ]}
+      />
     </div>
   );
 };

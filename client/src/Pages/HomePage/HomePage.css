@@ -5,7 +5,7 @@
 }
 
 .image-container {
-  width: 25vw; /* Set the width you want */
+  width: 40vw; /* Set the width you want */
   height: 70vh; /* Set the height you want */
   overflow: hidden; /* Hide any overflow */
   display: flex;
@@ -28,4 +28,21 @@
 }
 .fade-in.active {
   opacity: 1;
+}
+
+.home-intro {
+  width: 70%;
+  border-bottom: 2px solid black;
+  margin-right: 100px;
+  padding-bottom: 15px;
+}
+
+.scrollable-content {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  height: "2000px";
+}
+
+.scrollable-content.active {
+  /* opacity: 1; */
 }
