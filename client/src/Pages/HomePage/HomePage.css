@@ -21,3 +21,11 @@
   justify-content: flex-start;
   gap: 100px;
 }
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.fade-in.active {
+  opacity: 1;
+}

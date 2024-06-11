@@ -1,7 +1,9 @@
-import { useEffect } from "react";
-import Background from ".//2RTPuuM-tera-wallpaper.jpg";
+import { useEffect, useState } from "react";
+import Background from "./profile.jpg";
 import "./HomePage.css";
 const HomePage = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     // Function to perform smooth scroll over a custom duration
     const smoothScrollTo = (endY: number, duration: number) => {
@@ -23,6 +25,8 @@ const HomePage = () => {
 
         if (window.scrollY !== endY) {
           requestAnimationFrame(scroll);
+        } else {
+          setIsVisible(true);
         }
       };
 
@@ -30,7 +34,7 @@ const HomePage = () => {
     };
 
     // Delay of 3 seconds (3000 milliseconds) before starting the scroll
-    const delay = 500;
+    const delay = 750;
 
     const timer = setTimeout(() => {
       // Scroll down by 100 pixels over 2 seconds (2000 milliseconds)
@@ -47,13 +51,26 @@ const HomePage = () => {
           <img src={Background} alt="My Example" className="my-image" />
         </div>
         <div>
-          <h1>Altaf</h1>
-          <h1>Experience</h1>
-          <h1>Skills</h1>
+          <h2>「　Welcome　｜　Selamat Datang　｜　いらっしゃいませ　」</h2>
+          <div className={`fade-in ${isVisible ? "active" : ""}`}>
+            <h2>My name is Altaf</h2>
+            <ul>
+              <li>
+                <h3>Avid fullstack developer</h3>
+              </li>
+              <li>
+                <h3>Researching and solving network biology problems</h3>
+              </li>
+              <li>
+                <h3>Outdoor and bouldering enthusiast</h3>
+              </li>
+              <li>
+                <h3>World traveller</h3>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-
-      <h1>Welcome</h1>
     </div>
   );
 };
