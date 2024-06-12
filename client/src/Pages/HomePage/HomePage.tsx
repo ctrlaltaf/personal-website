@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import "./HomePage.css";
 import Background from "./profile.jpg";
-import ScrollToShowContent from "./ScrollToShowContent";
-import Skills from "./Content/Skills";
+import Fader from "./Fader";
 
 const HomePage = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     // Function to perform smooth scroll over a custom duration
@@ -48,6 +47,20 @@ const HomePage = () => {
     // Clean up the timer on component unmount
     return () => clearTimeout(timer);
   }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      // Log the current Y-coordinate of the scroll position
+      setScrollProgress(window.scrollY);
+    };
+
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup function to remove the event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div>
       <div className="home-front-container">
@@ -72,24 +85,9 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-
-      <ScrollToShowContent
-        contents={[
-          {
-            triggerPoint: 300,
-            render: () => <Skills />,
-          },
-          {
-            triggerPoint: 600,
-            render: () => (
-              <div>
-                <h2>Header 2</h2>
-                <p>This is a more complex div with some text.</p>
-              </div>
-            ),
-          },
-        ]}
-      />
+      {isVisible && scrollProgress > 250 && (
+        <Fader text="Hello world Props passed" />
+      )}
     </div>
   );
 };

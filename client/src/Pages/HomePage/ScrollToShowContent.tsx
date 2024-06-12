@@ -34,9 +34,7 @@ const ScrollToShowContent: React.FC<{ contents: ContentProps[] }> = ({
 
   return (
     // <div className={`fade-in ${showContent ? "active" : ""}`}>
-    <div
-      style={{ height: "2000px", opacity: 1, transition: "opacity 0.5s ease" }}
-    >
+    <div style={{ height: "2000px" }}>
       {" "}
       {/* Add enough content to allow scrolling */}{" "}
       {visibleContents.map((content, index) => (
