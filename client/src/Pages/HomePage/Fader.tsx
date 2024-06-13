@@ -31,6 +31,8 @@ const Fader: React.FC<textProps> = ({ text }) => {
   return (
     <>
       <h1 className={fadeClass.fade}>{text}</h1>
+      <br />
+
     </>
   );
 };
