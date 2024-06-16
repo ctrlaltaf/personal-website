@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import "./HomePage.css";
 import Background from "./profile.jpg";
-import Fader from "./Fader";
 
 interface FadeState {
   fade: string;
 }
 const HomePage = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [progress, setProgress] = useState(0);
+  const [fadeClass, setFadeClass] = useState<FadeState>({
+    fade: "fade-out",
+  });
 
   useEffect(() => {
     // Function to perform smooth scroll over a custom duration
@@ -51,24 +51,6 @@ const HomePage = () => {
     // Clean up the timer on component unmount
     return () => clearTimeout(timer);
   }, []);
-  useEffect(() => {
-    const handleScroll = () => {
-      // Log the current Y-coordinate of the scroll position
-      setScrollProgress(window.scrollY);
-    };
-
-    // Add scroll event listener
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup function to remove the event listener
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const [fadeClass, setFadeClass] = useState<FadeState>({
-    fade: "fade-out",
-  });
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -98,7 +80,6 @@ const HomePage = () => {
           const sectionId = section.getAttribute("id");
           if (sectionId && sectionId !== currentSection) {
             setCurrentSection(sectionId);
-            console.log(`Reached section: ${sectionId}`);
           }
         }
       });
@@ -114,7 +95,6 @@ const HomePage = () => {
 
   return (
     <div>
-      <p>{scrollProgress}</p>
       <div className="home-front-container">
         <div className="image-container">
           <img src={Background} alt="My Example" className="my-image" />
