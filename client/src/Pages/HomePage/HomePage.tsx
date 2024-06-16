@@ -141,7 +141,7 @@ const HomePage = () => {
       </div>
       <div className="experiences-container">
         <h1>Experiences</h1>
-        <div id="section1" className="section" style={{ height: "100vh" }}>
+        <div id="section1" className="section">
           <div className="content-title">
             <h2>Reed College </h2>
             <h2>Postbacc. Computational Biology Researcher</h2>
@@ -224,7 +224,134 @@ const HomePage = () => {
           </div>
         </div>
         <br />
-        <div id="section2" className="section" style={{ height: "100vh" }}>
+        <div id="section2" className="section">
+          <div className="content-title">
+            <h2>Reed College </h2>
+            <h2>Postbacc. Computational Biology Researcher</h2>
+            <p>Portland, Oregon, USA</p>
+          </div>
+          <h3>July 2023 - Present</h3>
+
+          <ul>
+            <li>
+              Working under Dr. Anna Ritz’s lab to support ongoing research in
+              network biology
+            </li>
+            <li>
+              Co-leading a web tool project, ProteinWeaver, to enhance
+              visualization and analysis of protein interaction networks through
+              the integration of ontological information. Presented poster at
+              UCLA's Regulatory & Systems Genomics conference. Data driven
+              project supporting three non-human species interactomes.
+            </li>
+            <li>
+              Collaborating with UW-Madison in a project, SPRAS, to create a
+              streamlined framework for handling multiple pathway reconstruction
+              algorithms that connect genes and proteins of interest in the
+              context of a general PPI network. Familiar with complex pathway
+              reconstruction algorithms with large network data.
+            </li>
+            <li>
+              Working in a collaborative research group with diverse backgrounds
+              in computer science, biology, and neuroscience through sharing
+              scientific literature and ideas
+            </li>
+            <li>
+              Working in a collaborative research group with diverse backgrounds
+              in computer science, biology, and neuroscience through sharing
+              scientific literature and ideas
+            </li>{" "}
+            <li>
+              Working in a collaborative research group with diverse backgrounds
+              in computer science, biology, and neuroscience through sharing
+              scientific literature and ideas
+            </li>{" "}
+            <li>
+              Working in a collaborative research group with diverse backgrounds
+              in computer science, biology, and neuroscience through sharing
+              scientific literature and ideas
+            </li>{" "}
+            <li>
+              Working in a collaborative research group with diverse backgrounds
+              in computer science, biology, and neuroscience through sharing
+              scientific literature and ideas
+            </li>{" "}
+            <li>
+              Working in a collaborative research group with diverse backgrounds
+              in computer science, biology, and neuroscience through sharing
+              scientific literature and ideas
+            </li>{" "}
+            <li>
+              Working in a collaborative research group with diverse backgrounds
+              in computer science, biology, and neuroscience through sharing
+              scientific literature and ideas
+            </li>{" "}
+            <li>
+              Working in a collaborative research group with diverse backgrounds
+              in computer science, biology, and neuroscience through sharing
+              scientific literature and ideas
+            </li>{" "}
+            <li>
+              Working in a collaborative research group with diverse backgrounds
+              in computer science, biology, and neuroscience through sharing
+              scientific literature and ideas
+            </li>{" "}
+            <li>
+              Working in a collaborative research group with diverse backgrounds
+              in computer science, biology, and neuroscience through sharing
+              scientific literature and ideas
+            </li>
+          </ul>
+          <div className="content-skills">
+            <h3>Technologies Used:</h3>
+            <ul className="content-skills-list">
+              <li className="content-skills-item">
+                {" "}
+                <img
+                  alt="Static Badge"
+                  src="https://img.shields.io/badge/React-React?logo=react&logoColor=white&labelColor=%2361dbfb&color=%2361dbfb"
+                  height="25"
+                />
+              </li>
+              <li className="content-skills-item">
+                <img
+                  alt="Static Badge"
+                  src="https://img.shields.io/badge/Express-Express?logo=express&logoColor=303030&labelColor=68A063&color=68A063"
+                  height="25"
+                />
+              </li>
+              <li className="content-skills-item">
+                <img
+                  alt="Static Badge"
+                  src="https://img.shields.io/badge/Neo4j-Neo4j?logo=neo4j&logoColor=%23014063&color=%23FCF9F6"
+                  height="25"
+                />
+              </li>
+              <li className="content-skills-item">
+                <img
+                  alt="Static Badge"
+                  src="https://img.shields.io/badge/NGINX-NGINX?logo=nginx&logoColor=green&color=black"
+                  height="25"
+                />
+              </li>
+              <li className="content-skills-item">
+                <img
+                  alt="Static Badge"
+                  src="https://img.shields.io/badge/RStudio-RStudio?logo=r&color=4AA4DE"
+                  height="25"
+                />
+              </li>
+              <li className="content-skills-item">
+                <img
+                  alt="Static Badge"
+                  src="https://img.shields.io/badge/Python-Python?logo=python&logoColor=ffde57&color=4584b6"
+                  height="25"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="section3" className="section">
           <div className="content-title">
             <h2>Reed College </h2>
             <h2>Postbacc. Computational Biology Researcher</h2>
