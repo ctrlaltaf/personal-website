@@ -1,0 +1,32 @@
+.container {
+    margin-left: 50px;
+    margin-top: 50px;
+    text-align: center;
+
+}
+
+.table-container {
+    /* border: 2px solid black; */
+}
+.row-container {
+    /* border: 2px solid blue; */
+    display: flex;
+    justify-content:space-evenly;
+    padding-left: 0px;
+
+}
+
+.column-1{
+    /* border:2px solid red; */
+    list-style-type: none; /* Removes the bullet point */
+    margin: 0;             /* Removes the default margin */
+    padding: 0;            /* Removes the default padding */
+    width: 50%;
+}
+.column-2{
+    /* border:2px solid green; */
+    list-style-type: none; /* Removes the bullet point */
+    margin: 0;             /* Removes the default margin */
+    padding: 0;            /* Removes the default padding */
+    width: 50%;
+}
