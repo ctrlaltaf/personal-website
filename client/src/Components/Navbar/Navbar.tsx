@@ -5,9 +5,9 @@ const Navbar = () => {
   return (
     <div className="navbar-container">
       <ul className="navbar-ul">
-        <li>
+        {/* <li>
           <p className="navbar-p">Altaf</p>
-        </li>
+        </li> */}
         <div className="navbar-menu">
           <li>
             <Link className="navbar-link" to={`/`}>
@@ -25,10 +25,10 @@ const Navbar = () => {
             </Link>
           </li>
         </div>
-
+{/* 
         <li className="navbar-last">
           <p className="navbar-p">Github/Linkedin</p>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
