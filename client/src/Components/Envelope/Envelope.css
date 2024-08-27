@@ -1,0 +1,25 @@
+.card-container {
+    /* height: 100px; */
+    width: 50vw;
+    background-color: beige;
+}
+
+.menu {
+    /* border: 2px solid black; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0px;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.envelope-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
