@@ -4,7 +4,7 @@ import { animate, motion, Variants } from "framer-motion";
 
 const Envelope = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [buttonX, setButtonX] = useState(450);
+    const [buttonX, setButtonX] = useState(0);
 
     const itemVariants: Variants = {
         open: {
@@ -29,8 +29,8 @@ const Envelope = () => {
                     animate={{ x: buttonX }}
                     onClick={() => {
                         if (isOpen) {
-                            setButtonX(450);
-                        } else setButtonX(-50);
+                            setButtonX(buttonX + 200);
+                        } else setButtonX(buttonX -200);
                         setIsOpen(!isOpen);
                     }}
                 >
@@ -48,6 +48,7 @@ const Envelope = () => {
                                 delayChildren: 0.3,
                                 staggerChildren: 0.05,
                             },
+                            x: buttonX,
                         },
                         closed: {
                             clipPath: "inset(10% 50% 90% 50% round 10px)",
@@ -56,6 +57,7 @@ const Envelope = () => {
                                 bounce: 0,
                                 duration: 0.3,
                             },
+                            x: buttonX,
                         },
                     }}
                     style={{ pointerEvents: isOpen ? "auto" : "none" }}
