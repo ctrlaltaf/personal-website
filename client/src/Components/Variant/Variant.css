@@ -1,0 +1,49 @@
+
+.box {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin: 0;
+}
+
+.menu {
+    filter: drop-shadow(1px 1px 1px #4700b3);
+    width: 300px;
+}
+
+.variant-ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgb(197, 190, 190);
+}
+
+.variant-li {
+    color: black;
+    display: block;
+}
+
+.variant-ul,
+.variant-li {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+}
+
+.variant-button {
+    background: rgb(197, 190, 190);
+    color: black;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
