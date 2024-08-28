@@ -29,71 +29,87 @@ const AboutPage = () => {
         };
     }, []);
 
-    useEffect(() => {
-        console.log(activeSection);
-    }, [activeSection]);
-
     return (
-        <div>
+        <div style={{ height: "300vh" }}>
             {/* Section 1 */}
-            <AnimatePresence>
-                <motion.section
-                    className="section"
-                    style={{ height: "100vh" }}
-                    key="section1"
-                >
+            <motion.section
+                className="section"
+                style={{ height: "100vh" }}
+                key="section1"
+            >
+                <AnimatePresence>
                     {activeSection === 0 && (
                         <motion.div
                             className="persisting"
-                            initial={{ x: 0, opacity: 0 }}
                             animate={{ x: 100, opacity: 1 }}
-                            transition={{ duration: 1.5 }}
-                            exit={{ opacity: 0, transition: { duration: 1.5 } }}
+                            transition={{ duration: 0.5 }}
+                            initial={{ opacity: 0 }}
+                            exit={{
+                                x: -100,
+                                opacity: 0,
+                                transition: { duration: 0.5 },
+                            }}
                         >
                             <h1>Section 1</h1>
                             <p>This is the first section.</p>
                         </motion.div>
                     )}
-                </motion.section>
+                </AnimatePresence>
+            </motion.section>
 
-                {/* Section 2 */}
+            {/* Section 2 */}
+            <AnimatePresence>
                 <motion.section
                     className="section"
                     style={{ height: "100vh" }}
                     key="section2"
                 >
-                    {activeSection === 1 && (
-                        <motion.div
-                            className="persisting2"
-                            initial={{ x: 0, opacity: 0 }}
-                            animate={{ x: 100, opacity: 1 }}
-                            transition={{ duration: 1.5 }}
-                            exit={{ opacity: 0, transition: { duration: 1.5 } }}
-                        >
-                            <h1>Section 2</h1>
-                            <p>This is the second section.</p>
-                        </motion.div>
-                    )}
+                    <AnimatePresence>
+                        {activeSection === 1 && (
+                            <motion.div
+                                className="persisting"
+                                animate={{ x: 100, opacity: 1 }}
+                                transition={{ duration: 0.5 }}
+                                initial={{ opacity: 0 }}
+                                exit={{
+                                    x: -100,
+                                    opacity: 0,
+                                    transition: { duration: 0.5 },
+                                }}
+                            >
+                                <h1>Section 2</h1>
+                                <p>This is the second section.</p>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </motion.section>
+            </AnimatePresence>
 
-                {/* Section 3 */}
+            {/* Section 3 */}
+            <AnimatePresence>
                 <motion.section
                     className="section"
                     style={{ height: "100vh" }}
                     key="section3"
                 >
-                    {activeSection === 2 && (
-                        <motion.div
-                            className="persisting3"
-                            initial={{ x: 0, opacity: 0 }}
-                            animate={{ x: 100, opacity: 1 }}
-                            transition={{ duration: 1.5 }}
-                            exit={{ opacity: 0, transition: { duration: 1.5 } }}
-                        >
-                            <h1>Section 3</h1>
-                            <p>This is the three section.</p>
-                        </motion.div>
-                    )}
+                    <AnimatePresence>
+                        {activeSection === 2 && (
+                            <motion.div
+                                className="persisting"
+                                animate={{ x: 100, opacity: 1 }}
+                                transition={{ duration: 0.5 }}
+                                initial={{ opacity: 0 }}
+                                exit={{
+                                    x: -100,
+                                    opacity: 0,
+                                    transition: { duration: 0.5 },
+                                }}
+                            >
+                                <h1>Section 3</h1>
+                                <p>This is the three section.</p>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </motion.section>
             </AnimatePresence>
         </div>
