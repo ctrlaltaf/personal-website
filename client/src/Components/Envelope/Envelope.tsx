@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Envelope.css";
-import { animate, motion, Variants } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const Envelope = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -32,10 +32,10 @@ const Envelope = () => {
                     onClick={() => {
                         if (isOpen) {
                             setButtonX(buttonX + 200);
-                            setEmoji("📦")
+                            setEmoji("📦");
                         } else {
                             setButtonX(buttonX - 200);
-                            setEmoji("✅")
+                            setEmoji("✅");
                         }
                         setIsOpen(!isOpen);
                     }}
@@ -70,7 +70,7 @@ const Envelope = () => {
                 >
                     <motion.ul className="column-container">
                         <ul>
-                            <h3>Description</h3>
+                            <h3 className="description-title">Description</h3>
                             <motion.li
                                 variants={itemVariants}
                                 className="description-column"
@@ -92,7 +92,7 @@ const Envelope = () => {
                             </motion.li>
                         </ul>
                         <ul className="skills-column">
-                            <h3>Skills</h3>
+                            <h3 className="skills-title">Skills</h3>
                             <motion.li
                                 variants={itemVariants}
                                 className="content-skills-item"
