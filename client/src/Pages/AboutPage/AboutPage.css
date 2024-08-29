@@ -3,6 +3,10 @@
     top: 50vh;
     color: red;
 }
+.persisting-fake {
+    padding-top: 50vh;
+    color: red;
+}
 
 .persisting2 {
     position: fixed;
