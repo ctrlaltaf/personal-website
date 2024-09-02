@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./HomePage.css";
 import Background from "./profile.jpg";
-import Interest from "../../Components/Interest/Interest";
+import Interest from "../../Components/InterestOld/InterestOld";
 
 interface FadeState {
     fade: string;

@@ -1,32 +1,57 @@
-.container {
-    margin-left: 50px;
-    margin-top: 50px;
-    text-align: center;
-
+:root {
+    --spacing-unit: calc(50vw);
 }
 
-.table-container {
-    /* border: 2px solid black; */
+.card-container {
+    width: 75vw;
+    background-color: beige;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: black;
 }
-.row-container {
-    /* border: 2px solid blue; */
+
+.menu {
     display: flex;
-    justify-content:space-evenly;
-    padding-left: 0px;
-
+    flex-direction: row;
+    align-items: center;
+    gap: 100px;
 }
 
-.column-1{
-    /* border:2px solid red; */
-    list-style-type: none; /* Removes the bullet point */
-    margin: 0;             /* Removes the default margin */
-    padding: 0;            /* Removes the default padding */
-    width: 50%;
+.column-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 0; /* Removes the default padding */
+    margin: 0; /* Removes the default margin */
+    height: 100%;
 }
-.column-2{
-    /* border:2px solid green; */
-    list-style-type: none; /* Removes the bullet point */
-    margin: 0;             /* Removes the default margin */
-    padding: 0;            /* Removes the default padding */
-    width: 50%;
+
+.envelope-container {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 200px;
+}
+
+.description-column {
+    align-items: flex-start;
+    width: 100%;
+    list-style-type: none;
+    border-right: 2px solid black;
+    padding-right: 20px;
+    height: 70%;
+    
+}
+
+.skills-column {
+    align-items: flex-start;
+    width: 100%;
+    list-style-type: none;
+}
+
+.description-title,
+.skills-title {
+    text-decoration: underline;
+    text-underline-offset: 5px;
 }

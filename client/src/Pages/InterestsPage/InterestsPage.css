@@ -1,0 +1,12 @@
+.persisting {
+    position: fixed;
+    top: 10vh;
+    
+}
+.persisting-fake {
+    padding-top: 10vh;
+}
+
+.section-container {
+    height: 400vh;
+}
