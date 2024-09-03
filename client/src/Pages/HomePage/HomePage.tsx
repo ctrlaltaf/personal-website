@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 import InterestsPage from "../InterestsPage/InterestsPage";
 import { FaAnglesDown } from "react-icons/fa6";
-// import Work from "../../Components/Work/Work";
+import Work from "../../Components/Work/Work";
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -61,6 +61,7 @@ const HomePage = () => {
 
     return (
         <div>
+            <motion.div className="progress-bar" style={{ scaleX }} />
             <div style={{ height: "100vh" }}>
                 <motion.div
                     className="intro-container"
@@ -102,9 +103,8 @@ const HomePage = () => {
             </div>
             <h1 className="center-container">Interests/Areas of Focus</h1>
             <InterestsPage></InterestsPage>
-            {/* <h1 className="center-container">Work Experience</h1>
-            <Work></Work> */}
-            <motion.div className="progress-bar" style={{ scaleX }} />
+            <h1 className="center-container">Work Experience</h1>
+            <Work></Work>
         </div>
     );
 };
