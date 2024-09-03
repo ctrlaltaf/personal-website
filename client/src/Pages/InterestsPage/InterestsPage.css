@@ -1,0 +1,46 @@
+.persisting {
+    position: fixed;
+    top: 5vh;
+    left: 25vh;
+}
+.persisting-fake {
+    padding-top: 5vh;
+    padding-left: 25vh;
+}
+
+.section-container {
+    height: 400vh;
+}
+
+.icon-1 {
+    width: 50px;
+    height: 50px;
+    color: rgb(96, 200, 96);
+    transform: rotate(-10deg); /* Rotate the div 45 degrees */
+}
+.icon-2 {
+    width: 50px;
+    height: 50px;
+    color: rgb(22, 31, 22);
+    transform: rotate(-10deg); /* Rotate the div 45 degrees */
+}
+.icon-3 {
+    width: 50px;
+    height: 50px;
+    color: rgb(70, 58, 200);
+    transform: rotate(-10deg); /* Rotate the div 45 degrees */
+}
+.icon-4 {
+    width: 50px;
+    height: 50px;
+    color: rgb(180, 113, 211);
+    transform: rotate(-10deg); /* Rotate the div 45 degrees */
+}
+
+.title-container {
+    display: flex;
+    flex-direction: row;
+}
+.title {
+    font-style: italic;
+}

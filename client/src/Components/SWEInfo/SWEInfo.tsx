@@ -1,47 +1,23 @@
-import { useState } from "react";
-import "./Envelope.css";
+import "./SWEInfo.css";
 import { motion, Variants } from "framer-motion";
 
-const Envelope = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [buttonX, setButtonX] = useState(0);
-    const [emoji, setEmoji] = useState("📦");
-
+const SWEInfo = () => {
     const itemVariants: Variants = {
         open: {
             opacity: 1,
-            y: 0,
             transition: { type: "spring", stiffness: 100, damping: 20 },
-            x: 0,
         },
-        closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
+        closed: { opacity: 0, transition: { duration: 0.2 } },
     };
 
     return (
         <div className="envelope-container">
             <motion.nav
-                initial={false}
-                animate={isOpen ? "open" : "closed"}
+                initial={"closed"}
+                animate={"open"}
                 className="menu"
+                variants={itemVariants}
             >
-                <motion.button
-                    whileHover={{ scale: 1.2 }}
-                    whileTap={{ scale: 0.97 }}
-                    animate={{ x: buttonX }}
-                    className="envelope-button"
-                    onClick={() => {
-                        if (isOpen) {
-                            setButtonX(buttonX + 200);
-                            setEmoji("📦");
-                        } else {
-                            setButtonX(buttonX - 200);
-                            setEmoji("✅");
-                        }
-                        setIsOpen(!isOpen);
-                    }}
-                >
-                    {emoji} Computational Biology{" "}
-                </motion.button>
                 <motion.div
                     className="card-container"
                     variants={{
@@ -50,11 +26,10 @@ const Envelope = () => {
                             transition: {
                                 type: "spring",
                                 bounce: 0,
-                                duration: 0.7,
-                                delayChildren: 0.3,
-                                staggerChildren: 0.05,
+                                duration: 1,
+                                delayChildren: 0.5,
+                                staggerChildren: 0.1,
                             },
-                            x: buttonX,
                         },
                         closed: {
                             clipPath: "inset(10% 50% 90% 50% round 10px)",
@@ -63,10 +38,8 @@ const Envelope = () => {
                                 bounce: 0,
                                 duration: 0.3,
                             },
-                            x: buttonX,
                         },
                     }}
-                    style={{ pointerEvents: isOpen ? "auto" : "none" }}
                 >
                     <motion.ul className="column-container">
                         <ul>
@@ -75,20 +48,20 @@ const Envelope = () => {
                                 variants={itemVariants}
                                 className="description-column"
                             >
-                                I am a computational biology researcher
-                                specializing in developing{" "}
-                                <b>full-stack tools</b> for visualizing protein
-                                and regulatory networks across species. I use{" "}
-                                <b>Python</b> and libraries like{" "}
-                                <b>
-                                    Matplotlib, NetworkX, and Pandas for data
-                                    analysis and benchmarking{" "}
-                                </b>
-                                , and I utilize <b>RStudio</b> for handling
-                                large datasets. My aim is to improve the
-                                understanding of biological networks and create
-                                user-friendly visualization tools for
-                                biologists.
+                                I have a strong foundation in software
+                                engineering from my experience as a{" "}
+                                <b>software engineer intern at Amazon</b>, where
+                                I worked on a{" "}
+                                <b>full-stack development project</b> to create
+                                a web-based tool for optimizing supply and
+                                demand decisions. This role involved technical
+                                development, collaborating on design documents,
+                                proposing new features, and managing large
+                                codebases. I am confident with using version
+                                control tools, such as GitHub. My experience in
+                                both technical and collaborative tasks enables
+                                me to contribute effectively to any software
+                                development team.
                             </motion.li>
                         </ul>
                         <ul className="skills-column">
@@ -108,9 +81,10 @@ const Envelope = () => {
                                 variants={itemVariants}
                                 className="content-skills-item"
                             >
+                                {" "}
                                 <img
                                     alt="Static Badge"
-                                    src="https://img.shields.io/badge/Express-Express?logo=express&logoColor=303030&labelColor=68A063&color=68A063"
+                                    src="https://img.shields.io/badge/TypeScript-TypeScript?style=flat&logo=typescript&color=white"
                                     height="25"
                                 />
                             </motion.li>
@@ -118,9 +92,10 @@ const Envelope = () => {
                                 variants={itemVariants}
                                 className="content-skills-item"
                             >
+                                {" "}
                                 <img
                                     alt="Static Badge"
-                                    src="https://img.shields.io/badge/Neo4j-Neo4j?logo=neo4j&logoColor=%23014063&color=%23FCF9F6"
+                                    src="https://img.shields.io/badge/AWS-AWS?logo=amazonwebservices&color=yellow"
                                     height="25"
                                 />
                             </motion.li>
@@ -128,30 +103,44 @@ const Envelope = () => {
                                 variants={itemVariants}
                                 className="content-skills-item"
                             >
+                                {" "}
                                 <img
                                     alt="Static Badge"
-                                    src="https://img.shields.io/badge/NGINX-NGINX?logo=nginx&logoColor=green&color=black"
                                     height="25"
+                                    src="https://img.shields.io/badge/API_Gateway-API_Gateway?logo=amazonapigateway&color=purple"
                                 />
                             </motion.li>
                             <motion.li
                                 variants={itemVariants}
                                 className="content-skills-item"
                             >
+                                {" "}
                                 <img
                                     alt="Static Badge"
-                                    src="https://img.shields.io/badge/RStudio-RStudio?logo=r&color=4AA4DE"
                                     height="25"
+                                    src="https://img.shields.io/badge/HTML5-HTML5?logo=html5"
                                 />
                             </motion.li>
                             <motion.li
                                 variants={itemVariants}
                                 className="content-skills-item"
                             >
+                                {" "}
                                 <img
                                     alt="Static Badge"
-                                    src="https://img.shields.io/badge/Python-Python?logo=python&logoColor=ffde57&color=4584b6"
                                     height="25"
+                                    src="https://img.shields.io/badge/MySQL-MySQL?logo=mysql"
+                                />
+                            </motion.li>
+                            <motion.li
+                                variants={itemVariants}
+                                className="content-skills-item"
+                            >
+                                {" "}
+                                <img
+                                    alt="Static Badge"
+                                    height="25"
+                                    src="https://img.shields.io/badge/GitHub-GitHub?logo=github&color=black"
                                 />
                             </motion.li>
                         </ul>
@@ -162,4 +151,4 @@ const Envelope = () => {
     );
 };
 
-export default Envelope;
+export default SWEInfo;

@@ -1,459 +1,97 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./HomePage.css";
-import Background from "./profile.jpg";
-import Interest from "../../Components/Interest/Interest";
+import { motion, useAnimation, Variants } from "framer-motion";
+import InterestsPage from "../InterestsPage/InterestsPage";
+import { FaAnglesDown } from "react-icons/fa6";
+// import Work from "../../Components/Work/Work";
 
-interface FadeState {
-    fade: string;
-}
+const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            duration: 1, // Duration for the container's transition
+            ease: "easeInOut", // Easing function for smooth transition
+            staggerChildren: 0.75, // Staggering effect for children
+            when: "beforeChildren", // Ensure this transition happens before children animate
+        },
+    },
+    after: {
+        opacity: 1,
+        y: 10,
+        transition: {
+            type: "spring",
+            stiffness: 10,
+            damping: 0,
+        },
+    },
+};
+
+// Variants for each child
+const childVariants = {
+    hidden: { opacity: 0, y: 20, transition: { duration: 0.75 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.75 } },
+};
+
 const HomePage = () => {
-    const [isVisible, setIsVisible] = useState(false);
-    const [fadeClass, setFadeClass] = useState<FadeState>({
-        fade: "fade-out",
-    });
+    const controls1 = useAnimation();
+    const controls2 = useAnimation();
 
     useEffect(() => {
-        // Function to perform smooth scroll over a custom duration
-        const smoothScrollTo = (endY: number, duration: number) => {
-            const startY = window.scrollY;
-            const startTime =
-                "now" in window.performance
-                    ? performance.now()
-                    : new Date().getTime();
-
-            const easeInOutQuad = (t: number) =>
-                t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-
-            const scroll = () => {
-                const now =
-                    "now" in window.performance
-                        ? performance.now()
-                        : new Date().getTime();
-                const time = Math.min(1, (now - startTime) / duration);
-                const timeFunction = easeInOutQuad(time);
-                window.scroll(
-                    0,
-                    Math.ceil(timeFunction * (endY - startY) + startY)
-                );
-
-                if (window.scrollY !== endY) {
-                    requestAnimationFrame(scroll);
-                } else {
-                    setIsVisible(true);
-                }
-            };
-
-            scroll();
+        const sequence = async () => {
+            // Start the first animation
+            await controls1.start("visible");
+            // Start the second animation after the first one finishes
+            await controls2.start("after");
         };
-
-        // Delay of 3 seconds (3000 milliseconds) before starting the scroll
-        const delay = 750;
-
-        const timer = setTimeout(() => {
-            // Scroll down by 100 pixels over 2 seconds (2000 milliseconds)
-            smoothScrollTo(200, 2000);
-        }, delay);
-
-        // Clean up the timer on component unmount
-        return () => clearTimeout(timer);
-    }, []);
-
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            if (fadeClass.fade == "fade-out" && isVisible) {
-                setFadeClass({
-                    fade: "fade-in",
-                });
-            }
-        }, 100);
-
-        return () => {
-            clearTimeout(timeout);
-        };
-    }, [isVisible]);
-
-    const [currentSection, setCurrentSection] = useState<string | null>(null);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const sections = document.querySelectorAll<HTMLElement>(".section");
-            sections.forEach((section) => {
-                const rect = section.getBoundingClientRect();
-                if (
-                    rect.bottom >= window.innerHeight &&
-                    rect.bottom <= window.innerHeight + rect.height
-                ) {
-                    const sectionId = section.getAttribute("id");
-                    if (sectionId && sectionId !== currentSection) {
-                        setCurrentSection(sectionId);
-                    }
-                }
-            });
-        };
-
-        window.addEventListener("scroll", handleScroll);
-
-        // Cleanup the event listener on component unmount
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [currentSection]);
+        sequence();
+    }, [controls1, controls2]);
 
     return (
-        <div className="home-page">
-            <div className="home-front-container">
-                <div className="image-container">
-                    <img
-                        src={Background}
-                        alt="My Example"
-                        className="my-image"
-                    />
-                </div>
-                <div className="test">
-                    <h2>
-                        「　Welcome　｜　Selamat
-                        Datang　｜　いらっしゃいませ　」
-                    </h2>
-                    <br />
-                    {isVisible && (
-                        <div className={fadeClass.fade}>
-                            <h1>Altaf Barelvi</h1>
-                            <h3>
-                                Fullstack Developer ・ Researcher ・ World
-                                Traveler ・ Learner
-                            </h3>
-                            <h4 className="home-intro">
-                                Born in Indonesia and living a nomadic lifestyle
-                                in Germany, the UK, and the USA, I have always
-                                loved building/exploring/learning new things
-                                from around the world and the internet. This
-                                site aims to showcase how I see the world
-                                through projects/interests/experiences
-                            </h4>
-                        </div>
-                    )}
-                </div>
+        <div>
+            <div style={{ height: "100vh" }}>
+                <motion.div
+                    className="intro-container"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate={controls1}
+                >
+                    <motion.h1 variants={childVariants}>
+                        Altaf Barelvi
+                    </motion.h1>
+                    <motion.h2 variants={childVariants}>
+                        Fullstack Developer ・ Researcher ・ Software Engineer
+                        ・ World Traveler
+                    </motion.h2>
+                    <motion.h5 variants={childVariants}>
+                        Born in Indonesia and living a nomadic lifestyle in
+                        Germany, the UK, and the USA, I have always loved
+                        building/exploring/learning new things from around the
+                        world and the internet. This site aims to showcase how I
+                        see the world through projects/interests/experiences
+                    </motion.h5>
+                    <div className="icon-container">
+                        <motion.h5
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate={controls2}
+                        >
+                            Scroll down to learn more!
+                        </motion.h5>
+                        <motion.div
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate={controls2}
+                        >
+                            <FaAnglesDown className="down-icon" />
+                        </motion.div>
+                    </div>
+                </motion.div>
             </div>
-            <Interest></Interest>
-            <div className="experiences-container">
-                <h1>Experiences</h1>
-                <div id="section1" className="section">
-                    <div className="content-title">
-                        <h2>Reed College </h2>
-                        <h2>Postbacc. Computational Biology Researcher</h2>
-                        <p>Portland, Oregon, USA</p>
-                    </div>
-                    <h3>July 2023 - Present</h3>
-
-                    <ul>
-                        <li>
-                            Working under Dr. Anna Ritz’s lab to support ongoing
-                            research in network biology
-                        </li>
-                        <li>
-                            Co-leading a web tool project, ProteinWeaver, to
-                            enhance visualization and analysis of protein
-                            interaction networks through the integration of
-                            ontological information. Presented poster at UCLA's
-                            Regulatory & Systems Genomics conference. Data
-                            driven project supporting three non-human species
-                            interactomes.
-                        </li>
-                        <li>
-                            Collaborating with UW-Madison in a project, SPRAS,
-                            to create a streamlined framework for handling
-                            multiple pathway reconstruction algorithms that
-                            connect genes and proteins of interest in the
-                            context of a general PPI network. Familiar with
-                            complex pathway reconstruction algorithms with large
-                            network data.
-                        </li>
-                        <li>
-                            Working in a collaborative research group with
-                            diverse backgrounds in computer science, biology,
-                            and neuroscience through sharing scientific
-                            literature and ideas
-                        </li>
-                    </ul>
-                    <div className="content-skills">
-                        <h3>Technologies Used:</h3>
-                        <ul className="content-skills-list">
-                            <li className="content-skills-item">
-                                {" "}
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/React-React?logo=react&logoColor=white&labelColor=%2361dbfb&color=%2361dbfb"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/Express-Express?logo=express&logoColor=303030&labelColor=68A063&color=68A063"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/Neo4j-Neo4j?logo=neo4j&logoColor=%23014063&color=%23FCF9F6"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/NGINX-NGINX?logo=nginx&logoColor=green&color=black"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/RStudio-RStudio?logo=r&color=4AA4DE"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/Python-Python?logo=python&logoColor=ffde57&color=4584b6"
-                                    height="25"
-                                />
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <br />
-                <div id="section2" className="section">
-                    <div className="content-title">
-                        <h2>Reed College </h2>
-                        <h2>Postbacc. Computational Biology Researcher</h2>
-                        <p>Portland, Oregon, USA</p>
-                    </div>
-                    <h3>July 2023 - Present</h3>
-
-                    <ul>
-                        <li>
-                            Working under Dr. Anna Ritz’s lab to support ongoing
-                            research in network biology
-                        </li>
-                        <li>
-                            Co-leading a web tool project, ProteinWeaver, to
-                            enhance visualization and analysis of protein
-                            interaction networks through the integration of
-                            ontological information. Presented poster at UCLA's
-                            Regulatory & Systems Genomics conference. Data
-                            driven project supporting three non-human species
-                            interactomes.
-                        </li>
-                        <li>
-                            Collaborating with UW-Madison in a project, SPRAS,
-                            to create a streamlined framework for handling
-                            multiple pathway reconstruction algorithms that
-                            connect genes and proteins of interest in the
-                            context of a general PPI network. Familiar with
-                            complex pathway reconstruction algorithms with large
-                            network data.
-                        </li>
-                        <li>
-                            Working in a collaborative research group with
-                            diverse backgrounds in computer science, biology,
-                            and neuroscience through sharing scientific
-                            literature and ideas
-                        </li>
-                        <li>
-                            Working in a collaborative research group with
-                            diverse backgrounds in computer science, biology,
-                            and neuroscience through sharing scientific
-                            literature and ideas
-                        </li>{" "}
-                        <li>
-                            Working in a collaborative research group with
-                            diverse backgrounds in computer science, biology,
-                            and neuroscience through sharing scientific
-                            literature and ideas
-                        </li>{" "}
-                        <li>
-                            Working in a collaborative research group with
-                            diverse backgrounds in computer science, biology,
-                            and neuroscience through sharing scientific
-                            literature and ideas
-                        </li>{" "}
-                        <li>
-                            Working in a collaborative research group with
-                            diverse backgrounds in computer science, biology,
-                            and neuroscience through sharing scientific
-                            literature and ideas
-                        </li>{" "}
-                        <li>
-                            Working in a collaborative research group with
-                            diverse backgrounds in computer science, biology,
-                            and neuroscience through sharing scientific
-                            literature and ideas
-                        </li>{" "}
-                        <li>
-                            Working in a collaborative research group with
-                            diverse backgrounds in computer science, biology,
-                            and neuroscience through sharing scientific
-                            literature and ideas
-                        </li>{" "}
-                        <li>
-                            Working in a collaborative research group with
-                            diverse backgrounds in computer science, biology,
-                            and neuroscience through sharing scientific
-                            literature and ideas
-                        </li>{" "}
-                        <li>
-                            Working in a collaborative research group with
-                            diverse backgrounds in computer science, biology,
-                            and neuroscience through sharing scientific
-                            literature and ideas
-                        </li>{" "}
-                        <li>
-                            Working in a collaborative research group with
-                            diverse backgrounds in computer science, biology,
-                            and neuroscience through sharing scientific
-                            literature and ideas
-                        </li>
-                    </ul>
-                    <div className="content-skills">
-                        <h3>Technologies Used:</h3>
-                        <ul className="content-skills-list">
-                            <li className="content-skills-item">
-                                {" "}
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/React-React?logo=react&logoColor=white&labelColor=%2361dbfb&color=%2361dbfb"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/Express-Express?logo=express&logoColor=303030&labelColor=68A063&color=68A063"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/Neo4j-Neo4j?logo=neo4j&logoColor=%23014063&color=%23FCF9F6"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/NGINX-NGINX?logo=nginx&logoColor=green&color=black"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/RStudio-RStudio?logo=r&color=4AA4DE"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/Python-Python?logo=python&logoColor=ffde57&color=4584b6"
-                                    height="25"
-                                />
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="section3" className="section">
-                    <div className="content-title">
-                        <h2>Reed College </h2>
-                        <h2>Postbacc. Computational Biology Researcher</h2>
-                        <p>Portland, Oregon, USA</p>
-                    </div>
-                    <h3>July 2023 - Present</h3>
-
-                    <ul>
-                        <li>
-                            Working under Dr. Anna Ritz’s lab to support ongoing
-                            research in network biology
-                        </li>
-                        <li>
-                            Co-leading a web tool project, ProteinWeaver, to
-                            enhance visualization and analysis of protein
-                            interaction networks through the integration of
-                            ontological information. Presented poster at UCLA's
-                            Regulatory & Systems Genomics conference. Data
-                            driven project supporting three non-human species
-                            interactomes.
-                        </li>
-                        <li>
-                            Collaborating with UW-Madison in a project, SPRAS,
-                            to create a streamlined framework for handling
-                            multiple pathway reconstruction algorithms that
-                            connect genes and proteins of interest in the
-                            context of a general PPI network. Familiar with
-                            complex pathway reconstruction algorithms with large
-                            network data.
-                        </li>
-                        <li>
-                            Working in a collaborative research group with
-                            diverse backgrounds in computer science, biology,
-                            and neuroscience through sharing scientific
-                            literature and ideas
-                        </li>
-                    </ul>
-                    <div className="content-skills">
-                        <h3>Technologies Used:</h3>
-                        <ul className="content-skills-list">
-                            <li className="content-skills-item">
-                                {" "}
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/React-React?logo=react&logoColor=white&labelColor=%2361dbfb&color=%2361dbfb"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/Express-Express?logo=express&logoColor=303030&labelColor=68A063&color=68A063"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/Neo4j-Neo4j?logo=neo4j&logoColor=%23014063&color=%23FCF9F6"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/NGINX-NGINX?logo=nginx&logoColor=green&color=black"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/RStudio-RStudio?logo=r&color=4AA4DE"
-                                    height="25"
-                                />
-                            </li>
-                            <li className="content-skills-item">
-                                <img
-                                    alt="Static Badge"
-                                    src="https://img.shields.io/badge/Python-Python?logo=python&logoColor=ffde57&color=4584b6"
-                                    height="25"
-                                />
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <h1 className="center-container">Interests/Areas of Focus</h1>
+            <InterestsPage></InterestsPage>
+            {/* <h1 className="center-container">Work Experience</h1>
+            <Work></Work> */}
         </div>
     );
 };
