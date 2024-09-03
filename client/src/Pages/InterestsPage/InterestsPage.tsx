@@ -1,8 +1,26 @@
 import { act, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, Variant, Variants } from "framer-motion";
 import "./InterestsPage.css";
-import Envelope from "../../Components/Envelope/Envelope";
-import Interest from "../../Components/Interest/Interest";
+import { MdScience } from "react-icons/md";
+import { FaComputer, FaBookOpenReader } from "react-icons/fa6";
+import { FaDatabase } from "react-icons/fa";
+
+import CompBioInfo from "../../Components/CompBioInfo/CompBioInfo";
+import SWEInfo from "../../Components/SWEInfo/SWEInfo";
+import DataInfo from "../../Components/DataInfo/DataInfo";
+import ResearchInfo from "../../Components/ResearchInfo/ResearchInfo";
+
+const variants: Variants = {
+    upDown: {
+        y: ["0%", "-30%", "0%"], // Moves up 20% and then back to the start position
+        transition: {
+            duration: 2, // Duration of one cycle of the animation in seconds
+            repeat: Infinity, // Repeat the animation indefinitely
+            repeatType: "loop", // Loop the animation
+        },
+    },
+};
+
 const InterestsPage = () => {
     const [activeSection, setActiveSection] = useState<number>(-1);
     const [persisting, setPersisting] = useState("persisting-fake");
@@ -55,21 +73,34 @@ const InterestsPage = () => {
             >
                 <AnimatePresence>
                     {activeSection === 0 && (
-                        <motion.div
-                            className={persisting}
-                            animate={{ x: 100, opacity: 1 }}
-                            transition={{ duration: 0.5 }}
-                            initial={{ opacity: 0 }}
-                            exit={{
-                                x: -100,
-                                opacity: 0,
-                                transition: { duration: 0.5 },
-                            }}
-                        >
-                            <h1>Section 1</h1>
-                            <p>This is the first section.</p>
-                            <Interest></Interest>
-                        </motion.div>
+                        <div>
+                            <motion.div
+                                className={persisting}
+                                animate={{ y: 100, opacity: 1 }}
+                                transition={{ duration: 0.5 }}
+                                initial={{ opacity: 0 }}
+                                exit={{
+                                    y: -100,
+                                    opacity: 0,
+                                    transition: { duration: 0.5 },
+                                }}
+                            >
+                                <div className="title-container">
+                                    <h1 className="title">
+                                        Computational Biologist
+                                    </h1>
+
+                                    <motion.div
+                                        variants={variants} // Apply the variants
+                                        animate="upDown"
+                                    >
+                                        {" "}
+                                        <MdScience className="icon-1" />
+                                    </motion.div>
+                                </div>
+                                <CompBioInfo></CompBioInfo>
+                            </motion.div>
+                        </div>
                     )}
                 </AnimatePresence>
             </motion.section>
@@ -85,18 +116,29 @@ const InterestsPage = () => {
                         {activeSection === 1 && (
                             <motion.div
                                 className="persisting"
-                                animate={{ x: 100, opacity: 1 }}
+                                animate={{ y: 100, opacity: 1 }}
                                 transition={{ duration: 0.5 }}
                                 initial={{ opacity: 0 }}
                                 exit={{
-                                    x: -100,
+                                    y: -100,
                                     opacity: 0,
                                     transition: { duration: 0.5 },
                                 }}
                             >
-                                <h1>Section 2</h1>
-                                <p>This is the second section.</p>
-                                <Interest></Interest>
+                                <div className="title-container">
+                                    <h1 className="title">
+                                        Software Engineering
+                                    </h1>
+
+                                    <motion.div
+                                        variants={variants} // Apply the variants
+                                        animate="upDown"
+                                    >
+                                        {" "}
+                                        <FaComputer className="icon-2" />
+                                    </motion.div>
+                                </div>{" "}
+                                <SWEInfo></SWEInfo>
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -114,18 +156,29 @@ const InterestsPage = () => {
                         {activeSection === 2 && (
                             <motion.div
                                 className="persisting"
-                                animate={{ x: 100, opacity: 1 }}
+                                animate={{ y: 100, opacity: 1 }}
                                 transition={{ duration: 0.5 }}
                                 initial={{ opacity: 0 }}
                                 exit={{
-                                    x: -100,
+                                    y: -100,
                                     opacity: 0,
                                     transition: { duration: 0.5 },
                                 }}
                             >
-                                <h1>Section 3</h1>
-                                <p>This is the three section.</p>
-                                <Interest></Interest>
+                                <div className="title-container">
+                                    <h1 className="title">
+                                        Data Science & Visualization
+                                    </h1>
+
+                                    <motion.div
+                                        variants={variants} // Apply the variants
+                                        animate="upDown"
+                                    >
+                                        {" "}
+                                        <FaDatabase className="icon-3" />
+                                    </motion.div>
+                                </div>{" "}
+                                <DataInfo></DataInfo>
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -143,18 +196,29 @@ const InterestsPage = () => {
                         {activeSection === 3 && (
                             <motion.div
                                 className="persisting"
-                                animate={{ x: 100, opacity: 1 }}
+                                animate={{ y: 100, opacity: 1 }}
                                 transition={{ duration: 0.5 }}
                                 initial={{ opacity: 0 }}
                                 exit={{
-                                    x: -100,
+                                    y: -100,
                                     opacity: 0,
                                     transition: { duration: 0.5 },
                                 }}
                             >
-                                <h1>Section 4</h1>
-                                <p>This is the fourth section.</p>
-                                <Interest></Interest>
+                                <div className="title-container">
+                                    <h1 className="title">
+                                        Research, Teaching, & Mentoring
+                                    </h1>
+
+                                    <motion.div
+                                        variants={variants} // Apply the variants
+                                        animate="upDown"
+                                    >
+                                        {" "}
+                                        <FaBookOpenReader className="icon-4" />
+                                    </motion.div>
+                                </div>{" "}
+                                <ResearchInfo></ResearchInfo>
                             </motion.div>
                         )}
                     </AnimatePresence>

@@ -87,6 +87,7 @@ const HomePage = () => {
                     </div>
                 </motion.div>
             </div>
+            <h1 className="center-container">Interests/Areas of Focus</h1>
             <InterestsPage></InterestsPage>
         </div>
     );

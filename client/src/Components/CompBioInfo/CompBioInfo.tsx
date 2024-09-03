@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./Interest.css";
+import "./CompBioInfo.css";
 import { motion, Variants } from "framer-motion";
 
-const Interest = () => {
+const CompBioInfo = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [buttonX, setButtonX] = useState(0);
     const [emoji, setEmoji] = useState("📦");
@@ -133,6 +133,16 @@ const Interest = () => {
                                     height="25"
                                 />
                             </motion.li>
+                            <motion.li
+                                variants={itemVariants}
+                                className="content-skills-item"
+                            >
+                                <img
+                                    alt="Static Badge"
+                                    src="https://img.shields.io/badge/linux-linux?style=flat&logo=linux&color=grey"
+                                    height="25"
+                                />
+                            </motion.li>
                         </ul>
                     </motion.ul>
                 </motion.div>
@@ -141,4 +151,4 @@ const Interest = () => {
     );
 };
 
-export default Interest;
+export default CompBioInfo;
