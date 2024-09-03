@@ -1,22 +1,16 @@
 .work-container {
     display: flex;
     flex-direction: row;
-    /* border: 2px solid black; */
-    height: 30vh;
     width: 90vw;
     justify-content: space-between;
     margin-left: 50px;
 }
 
 .column-1 {
-    /* border: 2px solid red; */
-    height: 30vh;
     width: 10%;
-    /* padding: 30px ; */
 }
 .column-2 {
     /* border: 2px solid rgb(64, 40, 184); */
-    height: 30vh;
     width: 90%;
 
 }
@@ -30,3 +24,14 @@ line {
 
 }
 
+.location-time{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.title{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}

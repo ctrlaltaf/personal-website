@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import "./HomePage.css";
 import {
     motion,
@@ -58,6 +58,28 @@ const HomePage = () => {
         };
         sequence();
     }, [controls1, controls2]);
+    const div1Ref = useRef<HTMLDivElement | null>(null);
+
+    const handleScroll = () => {
+        const refs = [
+            div1Ref,
+        ];
+        refs.forEach((ref, index) => {
+            if (ref.current) {
+                const rect = ref.current.getBoundingClientRect();
+                if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+                    console.log(`Reached div ${index + 1}`);
+                }
+            }
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     return (
         <div>
@@ -103,7 +125,9 @@ const HomePage = () => {
             </div>
             <h1 className="center-container">Interests/Areas of Focus</h1>
             <InterestsPage></InterestsPage>
-            <h1 className="center-container">Work Experience</h1>
+            <h1 ref={div1Ref} className="center-container">
+                Work Experience
+            </h1>
             <Work></Work>
         </div>
     );
