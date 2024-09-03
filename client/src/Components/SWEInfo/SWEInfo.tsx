@@ -1,12 +1,7 @@
-import { useState } from "react";
 import "./SWEInfo.css";
 import { motion, Variants } from "framer-motion";
 
 const SWEInfo = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [buttonX, setButtonX] = useState(0);
-    const [emoji, setEmoji] = useState("📦");
-
     const itemVariants: Variants = {
         open: {
             opacity: 1,
@@ -45,7 +40,6 @@ const SWEInfo = () => {
                             },
                         },
                     }}
-                    style={{ pointerEvents: isOpen ? "auto" : "none" }}
                 >
                     <motion.ul className="column-container">
                         <ul>

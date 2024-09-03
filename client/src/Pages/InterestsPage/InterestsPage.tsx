@@ -1,5 +1,5 @@
-import { act, useEffect, useState } from "react";
-import { AnimatePresence, motion, Variant, Variants } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import "./InterestsPage.css";
 import { MdScience } from "react-icons/md";
 import { FaComputer, FaBookOpenReader } from "react-icons/fa6";
@@ -29,6 +29,7 @@ const InterestsPage = () => {
     const handleScroll = () => {
         const sections = document.querySelectorAll<HTMLElement>(".section");
         const scrollPosition = window.scrollY + window.innerHeight / 2;
+        // console.log("pos", scrollPosition);
 
         sections.forEach((section, index) => {
             const sectionTop = section.offsetTop;
@@ -51,6 +52,14 @@ const InterestsPage = () => {
                 index == 1 &&
                 scrollPosition <= sectionTop - sectionHeight / 2
             ) {
+                setPersisting("persisting-fake");
+            }
+
+            if (
+                index == 3 &&
+                scrollPosition >= sectionTop + sectionHeight / 2
+            ) {
+                console.log("ending");
                 setPersisting("persisting-fake");
             }
         });
@@ -195,7 +204,7 @@ const InterestsPage = () => {
                     <AnimatePresence>
                         {activeSection === 3 && (
                             <motion.div
-                                className="persisting"
+                                className={persisting}
                                 animate={{ y: 100, opacity: 1 }}
                                 transition={{ duration: 0.5 }}
                                 initial={{ opacity: 0 }}

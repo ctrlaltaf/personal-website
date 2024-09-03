@@ -1,12 +1,7 @@
-import { useState } from "react";
 import "./ResearchInfo.css";
 import { motion, Variants } from "framer-motion";
 
 const ResearchInfo = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [buttonX, setButtonX] = useState(0);
-    const [emoji, setEmoji] = useState("📦");
-
     const itemVariants: Variants = {
         open: {
             opacity: 1,
@@ -45,7 +40,6 @@ const ResearchInfo = () => {
                             },
                         },
                     }}
-                    style={{ pointerEvents: isOpen ? "auto" : "none" }}
                 >
                     <motion.ul className="column-container">
                         <ul>

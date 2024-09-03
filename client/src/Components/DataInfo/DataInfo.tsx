@@ -1,12 +1,7 @@
-import { useState } from "react";
 import "./DataInfo.css";
 import { motion, Variants } from "framer-motion";
 
 const DataInfo = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [buttonX, setButtonX] = useState(0);
-    const [emoji, setEmoji] = useState("📦");
-
     const itemVariants: Variants = {
         open: {
             opacity: 1,
@@ -45,7 +40,6 @@ const DataInfo = () => {
                             },
                         },
                     }}
-                    style={{ pointerEvents: isOpen ? "auto" : "none" }}
                 >
                     <motion.ul className="column-container">
                         <ul>
@@ -64,9 +58,10 @@ const DataInfo = () => {
                                 skilled in using Neo4j for managing complex
                                 networks and apply graph theory to analyze these
                                 interactions. Additionally, I use visualization
-                                tools like <b>Cytoscape</b> and am expanding my skills
-                                with web-based libraries like D3.js to create
-                                meaningful visualizations for researchers.
+                                tools like <b>Cytoscape</b> and am expanding my
+                                skills with web-based libraries like D3.js to
+                                create meaningful visualizations for
+                                researchers.
                             </motion.li>
                         </ul>
                         <ul className="skills-column">
