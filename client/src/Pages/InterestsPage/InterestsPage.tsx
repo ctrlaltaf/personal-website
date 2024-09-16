@@ -29,7 +29,6 @@ const InterestsPage = () => {
     const handleScroll = () => {
         const sections = document.querySelectorAll<HTMLElement>(".section");
         const scrollPosition = window.scrollY + window.innerHeight / 2;
-        // console.log("pos", scrollPosition);
 
         sections.forEach((section, index) => {
             const sectionTop = section.offsetTop;
@@ -59,7 +58,6 @@ const InterestsPage = () => {
                 index == 3 &&
                 scrollPosition >= sectionTop + sectionHeight / 2
             ) {
-                console.log("ending");
                 setPersisting("persisting-fake");
             }
         });

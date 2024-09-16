@@ -1,9 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import "./HomePage.css";
-import { motion, useAnimation, Variants } from "framer-motion";
+import {
+    motion,
+    useAnimation,
+    Variants,
+    useScroll,
+    useSpring,
+} from "framer-motion";
 import InterestsPage from "../InterestsPage/InterestsPage";
 import { FaAnglesDown } from "react-icons/fa6";
-// import Work from "../../Components/Work/Work";
+import Work from "../../Components/Work/Work";
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -34,6 +40,12 @@ const childVariants = {
 };
 
 const HomePage = () => {
+    const { scrollYProgress } = useScroll();
+    const scaleX = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001,
+    });
     const controls1 = useAnimation();
     const controls2 = useAnimation();
 
@@ -46,9 +58,32 @@ const HomePage = () => {
         };
         sequence();
     }, [controls1, controls2]);
+    const div1Ref = useRef<HTMLDivElement | null>(null);
+
+    const handleScroll = () => {
+        const refs = [
+            div1Ref,
+        ];
+        refs.forEach((ref, index) => {
+            if (ref.current) {
+                const rect = ref.current.getBoundingClientRect();
+                if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+                    console.log(`Reached div ${index + 1}`);
+                }
+            }
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     return (
         <div>
+            <motion.div className="progress-bar" style={{ scaleX }} />
             <div style={{ height: "100vh" }}>
                 <motion.div
                     className="intro-container"
@@ -90,8 +125,10 @@ const HomePage = () => {
             </div>
             <h1 className="center-container">Interests/Areas of Focus</h1>
             <InterestsPage></InterestsPage>
-            {/* <h1 className="center-container">Work Experience</h1>
-            <Work></Work> */}
+            <h1 ref={div1Ref} className="center-container">
+                Work Experience
+            </h1>
+            <Work></Work>
         </div>
     );
 };
